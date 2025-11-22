@@ -1,104 +1,122 @@
-**🔍 Overview**
+📰 Fake News Detector (Machine Learning + Flask)
 
-NewsBuster is an AI-powered fake news detection web application built with Flask and Machine Learning (NLP).
-It analyzes input text from news articles and classifies them as REAL or FAKE based on linguistic and statistical features.
+A machine-learning powered Fake News Detection system that classifies news as REAL or FAKE using TF-IDF vectorization and Logistic Regression.
+Includes a simple and clean Flask web app for real-time predictions.
 
-This project demonstrates how AI can help in detecting misinformation using modern Natural Language Processing and Machine Learning techniques.
+⭐ Summary
 
-**✨ Features**
+A Flask-based Fake News Detector trained on TF-IDF features that predicts whether a news article is real or fake with probability scores.
 
-🧠 AI-based Fake News Classifier — Uses a trained Logistic Regression model.
+📌 Description
 
-🧹 Text Cleaning Pipeline — Removes URLs, punctuation, and noise before prediction.
+This project provides a full end-to-end Fake News Detection pipeline:
 
-💻 Interactive Web Interface — Built with Flask and modern HTML/CSS design.
+Data loading, preprocessing & text cleaning
 
-📊 Confidence Score Bar — Displays model’s probability for better interpretability.
+TF-IDF vectorizer (1–2 n-grams)
 
-📱 Responsive UI — Works smoothly on both desktop and mobile.
+Logistic Regression model training
 
-🧩 Explainable ML Stack — Easy to understand, modify, and retrain.
+Evaluation with accuracy, F1-score & confusion matrix
 
-**🧰 Tech Stack**
-Layer	Tools Used
-Backend	Python, Flask
-Machine Learning	Scikit-learn, Pandas, NumPy
-Vectorization	TF-IDF
-Frontend	HTML5, CSS3 (Dark UI)
-Model Type	Logistic Regression
-Serialization	Joblib
+Saving model + vectorizer using joblib
 
-**🧪 How It Works**
+Flask-based frontend where users can paste any news text to get predictions
 
-The user enters or pastes a piece of news text.
+It is designed to behave realistically in real-world conditions and generalize well on unseen news.
 
-The app cleans and preprocesses the text (removing URLs, special chars, etc.).
+📂 Project Structure
+Fake-News-Detector/
+│
+├── app.py                     # Flask web application for prediction
+├── train.py                   # ML pipeline: training + evaluation
+│
+├── models/
+│   ├── model.pkl              # Saved Logistic Regression model
+│   ├── vectorizer.pkl         # Saved TF-IDF vectorizer
+│   └── confusion_matrix.png   # Evaluation visualization
+│
+├── templates/
+│   └── index.html             # Front-end UI for prediction
+│
+├── data/
+│   └── merged_news.csv        # Dataset used for training
+│
+└── README.md                  # Documentation
 
-Text is converted into a TF-IDF vector.
+⚙️ Installation & Setup
+1️⃣ Clone the repository
+git clone https://github.com/yourusername/fake-news-detector.git
+cd fake-news-detector
 
-The trained ML model predicts whether it’s “REAL” or “FAKE.”
-
-The result and confidence probability are displayed in the web UI.
-
-**⚙️ Installation & Setup**
-
-1️⃣ Clone this repository
-git clone https://github.com/Rahul8243/NewsBuster.git
-cd NewsBuster
-
-2️⃣ Create & activate a virtual environment
-python -m venv venv
-venv\Scripts\activate   # On Windows
-source venv/bin/activate   # On macOS/Linux
-
-3️⃣ Install dependencies
+2️⃣ Install dependencies
 pip install -r requirements.txt
 
-4️⃣ Train the model (if not already present)
-
-Make sure you have your dataset ready, then run:
+3️⃣ Train the model
 python train.py
 
 
 This will generate:
 
 models/model.pkl
+
 models/vectorizer.pkl
 
-5️⃣ Run the Flask app
+models/confusion_matrix.png
+
+4️⃣ Run the Flask app
 python app.py
 
 
-**Then open your browser and go to 👉 http://localhost:5000**
+Navigate to:
+➡️ http://127.0.0.1:5000
 
-**🧩 Project Structure**
-NewsBuster/
-│
-├── app.py                 # Flask app (main backend)
-├── train.py               # Script to train model
-├── requirements.txt       # Python dependencies
-├── models/
-│   ├── model.pkl          # Trained ML model
-│   └── vectorizer.pkl     # TF-IDF vectorizer
-├── templates/
-│   └── index.html         # Frontend UI
-├── static/                # (Optional) CSS, JS, or image files
-└── README.md              # Documentation
+🧠 Model Details
 
-**🧠 Example Output**
-Input	Prediction	Confidence
-“Government announces new vaccine drive tomorrow.”	REAL	0.94
-“Aliens landed in Paris last night, officials confirm.”	FAKE	0.87
+Algorithm: Logistic Regression
 
-**👨‍💻 Developer**
-Rahul Kumar
-📧 rahulrajmahi611@gmail.com
+Feature Extraction: TF-IDF Vectorizer (unigram + bigram)
 
-**🌐 GitHub Profile**
-https://github.com/Rahul8243
+Train/Test Split: 80/20 (stratified)
 
-**🌟 Acknowledgements**
-https://scikit-learn.org/stable/
-https://flask.palletsprojects.com/en/stable/
-https://www.kaggle.com/
- 
+Metrics: Accuracy, Precision, Recall, F1-score
+
+Output:
+
+Label: REAL / FAKE
+
+Probability of FAKE news
+
+🖥️ Web App Features
+
+Clean and simple user interface
+
+Enter any news headline or paragraph
+
+Get prediction instantly
+
+Probability score included
+
+📊 Evaluation
+
+The training script automatically generates a confusion matrix showing:
+
+True Real
+
+True Fake
+
+Misclassifications
+
+Saved at:
+
+models/confusion_matrix.png
+
+🔮 Future Improvements
+
+Add XGBoost / SVM for better accuracy
+
+Develop API endpoints
+
+Use transformer models (BERT)
+
+Build a Streamlit dashboard
