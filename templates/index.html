@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>📰 NewsBuster | Fake News Detector</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+     
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: #f1f1f1;
+        padding: 40px 20px;
+        margin: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: rgba(30, 30, 30, 0.85);
+        backdrop-filter: blur(10px);
+        padding: 30px 35px;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        animation: fadeIn 1.2s ease-in-out;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 2.2rem;
+        color: #00bcd4;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+      }
+
+      textarea {
+        width: 100%;
+        height: 160px;
+        padding: 14px;
+        border-radius: 10px;
+        border: none;
+        resize: none;
+        outline: none;
+        font-size: 1rem;
+        background: #222;
+        color: #f5f5f5;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+        transition: all 0.3s ease;
+      }
+
+      textarea:focus {
+        background: #2b2b2b;
+        box-shadow: 0 0 10px #00bcd4;
+      }
+
+      button {
+        display: block;
+        width: 100%;
+        background: linear-gradient(135deg, #00bcd4, #2196f3);
+        color: white;
+        font-weight: 600;
+        border: none;
+        padding: 12px;
+        margin-top: 18px;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background: linear-gradient(135deg, #2196f3, #00bcd4);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,188,212,0.3);
+      }
+
+      .result {
+        margin-top: 25px;
+        padding: 16px;
+        border-radius: 10px;
+        font-size: 1.05rem;
+        animation: fadeInUp 0.7s ease;
+      }
+
+      .fake {
+        background: rgba(120, 30, 30, 0.9);
+        color: #ffdede;
+        border-left: 5px solid #ff4d4d;
+      }
+
+      .real {
+        background: rgba(40, 100, 50, 0.9);
+        color: #dfffe0;
+        border-left: 5px solid #00c853;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>📰 NewsBuster</h1>
+      <form method="post">
+        <textarea name="news_text" placeholder="Paste news text here...">{{ text }}</textarea>
+        <button type="submit">🔍 Predict</button>
+      </form>
+
+      {% if result %}
+        <div class="result {% if result=='FAKE' %}fake{% else %}real{% endif %}">
+          <strong>Prediction:</strong> {{ result }} <br>
+          <strong>Probability (FAKE):</strong> {{ prob }}
+        </div>
+      {% endif %}
+    </div>
+    
+    <footer>
+      © {{ current_year or "2025" }} NewsBuster — built by The Rahul
+    </footer>
+  </body>
+</html>
