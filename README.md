@@ -120,3 +120,10 @@ Develop API endpoints
 Use transformer models (BERT)
 
 Build a Streamlit dashboard
+
+Rahul Raj
+📧 Email: rahulrajmahi611@gmail.com
+
+🔗 LinkedIn: https://www.linkedin.com/in/rahul-kumar-ab8843198/
+
+🐙 GitHub: https://github.com/Rahul8243
